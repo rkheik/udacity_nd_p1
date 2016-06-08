@@ -13,8 +13,8 @@ public class MovieList {
         mItems = new ArrayList<>();
         for(int i=0; i<20; i++) {
             Movie m = new Movie();
-            m.setmTitle("Avengers");
-            m.setImageUrl("http://example.com");
+            m.setmTitle("ESOTSM");
+            m.setImageUrl("http://image.tmdb.org/t/p/w185/7y3eYvTsGjxPYDtSnumCLIMDkrV.jpg");
             mItems.add(m);
         }
     }

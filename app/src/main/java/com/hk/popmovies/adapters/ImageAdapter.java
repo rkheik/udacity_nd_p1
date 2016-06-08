@@ -1,6 +1,8 @@
 package com.hk.popmovies.adapters;
 
 import android.content.Context;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,8 @@ import android.widget.ImageView;
 import com.hk.popmovies.R;
 import com.hk.popmovies.models.Movie;
 import com.hk.popmovies.models.MovieList;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by humbo on 7/6/16.
@@ -53,7 +57,8 @@ public class ImageAdapter extends BaseAdapter {
         }
         holder = (Holder) convertView.getTag();
         Movie movie = mModel.getItem(position);
-        holder.image.setImageResource(R.mipmap.ic_launcher);
+        Picasso.with(mContext).load(movie.getImageUrl()).into(holder.image);
+        //holder.image.setImageResource(R.mipmap.ic_launcher);
         return convertView;
     }
 
