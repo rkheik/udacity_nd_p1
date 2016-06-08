@@ -1,2 +1,4 @@
 [fix: Frame layout behind app bar layout](http://stackoverflow.com/questions/32427084)
-
+[gridview](https://developer.android.com/guide/topics/ui/layout/gridview.html)
+[gridview with custom adapter](http://www.stealthcopter.com/blog/2010/09/android-creating-a-custom-adapter-for-gridview-buttonadapter/)
+[view holder pattern](https://dzone.com/articles/optimizing-your-listview)
