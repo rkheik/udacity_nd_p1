@@ -1,16 +1,18 @@
 package com.hk.popmovies.models;
 
+import java.io.Serializable;
+
 /**
  * Created by humbo on 7/6/16.
  */
-public class Movie {
+public class Movie implements Serializable {
     private String mTitle;
     private String mImageUrl;
 
-    public String getmTitle() {
+    public String getTitle() {
         return mTitle;
     }
-    public void setmTitle(String mTitle) {
+    public void setTitle(String mTitle) {
         this.mTitle = mTitle;
     }
 

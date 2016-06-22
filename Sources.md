@@ -4,3 +4,6 @@
 [view holder pattern](https://dzone.com/articles/optimizing-your-listview)
 [imageview square images](http://stackoverflow.com/questions/16506275)
 [Picasso](http://square.github.io/picasso/)
+[Manufacturing intents](http://onemikro2nd.blogspot.mx/2013/07/android-patterns-manufacturing-intents.html)
+[Passing data serializing object](http://stackoverflow.com/questions/14333449)
+[Using newInstance() to Instantiate a Fragment](http://www.androiddesignpatterns.com/2012/05/using-newinstance-to-instantiate.html)

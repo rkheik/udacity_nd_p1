@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 public class MovieListActivity extends AppCompatActivity {
 
@@ -14,7 +15,7 @@ public class MovieListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if(savedInstanceState == null) {
-            Fragment fragment = new MovieListActivityFragment();
+            Fragment fragment = new MovieListFragment();
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.movie_list_fragment_container, fragment)

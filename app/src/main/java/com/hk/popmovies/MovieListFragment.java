@@ -1,20 +1,23 @@
 package com.hk.popmovies;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.hk.popmovies.adapters.ImageAdapter;
+import com.hk.popmovies.models.Movie;
 import com.hk.popmovies.models.MovieList;
 
-public class MovieListActivityFragment extends Fragment {
+public class MovieListFragment extends Fragment {
 
     private MovieList mMovies = new MovieList();
 
-    public MovieListActivityFragment() {
+    public MovieListFragment() {
     }
 
     @Override
@@ -24,7 +27,18 @@ public class MovieListActivityFragment extends Fragment {
         ImageAdapter adapter = new ImageAdapter(getContext(), mMovies);
         GridView grid = (GridView)root.findViewById(R.id.movie_list_gridview);
         grid.setAdapter(adapter);
-
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                gotoMovieDetail(position);
+            }
+        });
         return root;
+    }
+
+    private void gotoMovieDetail(int position) {
+        Movie movie = mMovies.getItem(position);
+        Intent intent = MovieDetailActivity.getStartIntent(getContext(), movie);
+        startActivity(intent);
     }
 }

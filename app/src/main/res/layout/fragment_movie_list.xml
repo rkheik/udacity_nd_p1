@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hk.popmovies.MovieListActivityFragment">
+    tools:context=".MovieListFragment">
     <GridView
         android:id="@+id/movie_list_gridview"
         android:layout_width="match_parent"
