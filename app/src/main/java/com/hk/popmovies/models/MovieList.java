@@ -7,10 +7,10 @@ import java.util.List;
  * Created by humbo on 7/6/16.
  */
 public class MovieList {
-    private List<Movie> mItems;
+    private List<Movie> items;
 
     public MovieList() {
-        mItems = new ArrayList<>();
+        items = new ArrayList<>();
         for(int i=0; i<20; i++) {
             Movie m = new Movie();
             m.setTitle("ESOTSM");
@@ -19,15 +19,15 @@ public class MovieList {
             m.setVoteAverage("5/5");
             m.setSynopsis("When their relationship turns sour, a couple undergoes a procedure to have each other erased from their memories. But it is only through the process of loss that they discover what they had to begin with.");
 
-            mItems.add(m);
+            items.add(m);
         }
     }
 
     public int getCount() {
-        return mItems.size();
+        return items.size();
     }
 
-    public Movie getItem(int position) {
-        return mItems.get(position);
+    public Movie getMovie(int position) {
+        return items.get(position);
     }
 }

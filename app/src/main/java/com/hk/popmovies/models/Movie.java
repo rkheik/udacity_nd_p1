@@ -6,44 +6,44 @@ import java.io.Serializable;
  * Created by humbo on 7/6/16.
  */
 public class Movie implements Serializable {
-    private String mTitle;
-    private String mSynopsis;
-    private String mImageUrl;
-    private String mReleaseDate;
-    private String mVoteAverage;
+    private String title;
+    private String synopsis;
+    private String imageUrl;
+    private String releaseDate;
+    private String voteAverage;
 
     public String getTitle() {
-        return mTitle;
+        return title;
     }
     public void setTitle(String mTitle) {
-        this.mTitle = mTitle;
+        this.title = mTitle;
     }
 
     public String getSynopsis() {
-        return mSynopsis;
+        return synopsis;
     }
     public void setSynopsis(String synopsis) {
-        this.mSynopsis = synopsis;
+        this.synopsis = synopsis;
     }
 
     public String getImageUrl() {
-        return mImageUrl;
+        return imageUrl;
     }
     public void setImageUrl(String mImageUrl) {
-        this.mImageUrl = mImageUrl;
+        this.imageUrl = mImageUrl;
     }
 
     public String getReleaseDate() {
-        return mReleaseDate;
+        return releaseDate;
     }
     public void setReleaseDate(String releaseDate) {
-        this.mReleaseDate = releaseDate;
+        this.releaseDate = releaseDate;
     }
 
     public String getVoteAverage() {
-        return mVoteAverage;
+        return voteAverage;
     }
     public void setVoteAverage(String voteAverage) {
-        this.mVoteAverage = voteAverage;
+        this.voteAverage = voteAverage;
     }
 }

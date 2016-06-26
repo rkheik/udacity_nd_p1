@@ -15,7 +15,7 @@ import com.hk.popmovies.models.MovieList;
 
 public class MovieListFragment extends Fragment {
 
-    private MovieList mMovies = new MovieList();
+    private MovieList movies = new MovieList();
 
     public MovieListFragment() {
     }
@@ -24,7 +24,7 @@ public class MovieListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_movie_list, container, false);
-        ImageAdapter adapter = new ImageAdapter(getContext(), mMovies);
+        ImageAdapter adapter = new ImageAdapter(getContext(), movies);
         GridView grid = (GridView)root.findViewById(R.id.movie_list_gridview);
         grid.setAdapter(adapter);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -37,7 +37,7 @@ public class MovieListFragment extends Fragment {
     }
 
     private void gotoMovieDetail(int position) {
-        Movie movie = mMovies.getItem(position);
+        Movie movie = movies.getMovie(position);
         Intent intent = MovieDetailActivity.getStartIntent(getContext(), movie);
         startActivity(intent);
     }

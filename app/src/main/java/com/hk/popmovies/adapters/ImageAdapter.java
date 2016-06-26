@@ -1,8 +1,6 @@
 package com.hk.popmovies.adapters;
 
 import android.content.Context;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,6 @@ import android.widget.ImageView;
 import com.hk.popmovies.R;
 import com.hk.popmovies.models.Movie;
 import com.hk.popmovies.models.MovieList;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -20,25 +17,25 @@ import com.squareup.picasso.Picasso;
  */
 public class ImageAdapter extends BaseAdapter {
 
-    private Context mContext;
-    private MovieList mModel;
-    private LayoutInflater mInflater;
+    private Context context;
+    private MovieList model;
+    private LayoutInflater inflater;
 
     public ImageAdapter(Context context, MovieList model) {
-        this.mContext = context;
-        this.mModel = model;
-        this.mInflater = (LayoutInflater) mContext
+        this.context = context;
+        this.model = model;
+        this.inflater = (LayoutInflater) this.context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return mModel.getCount();
+        return model.getCount();
     }
 
     @Override
     public Object getItem(int position) {
-        return mModel.getItem(position);
+        return model.getMovie(position);
     }
 
     @Override
@@ -50,14 +47,14 @@ public class ImageAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         Holder holder = null;
         if(convertView == null) {
-            convertView = mInflater.inflate(R.layout.cell_movie, null);
+            convertView = inflater.inflate(R.layout.cell_movie, null);
             holder = new Holder();
             holder.image = (ImageView) convertView.findViewById(R.id.cell_movie_image);
             convertView.setTag(holder);
         }
         holder = (Holder) convertView.getTag();
-        Movie movie = mModel.getItem(position);
-        Picasso.with(mContext).load(movie.getImageUrl()).into(holder.image);
+        Movie movie = model.getMovie(position);
+        Picasso.with(context).load(movie.getImageUrl()).into(holder.image);
         //holder.image.setImageResource(R.mipmap.ic_launcher);
         return convertView;
     }
