@@ -1,5 +1,16 @@
 package com.hk.popmovies.models;
 
+import android.content.Context;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,22 +18,75 @@ import java.util.List;
  * Created by humbo on 7/6/16.
  */
 public class MovieList {
-    private List<Movie> items;
+    public List<Movie> items;
 
-    public MovieList() {
-        items = new ArrayList<>();
-        for(int i=0; i<20; i++) {
-            Movie m = new Movie();
-            m.setTitle("ESOTSM");
-            m.setImageUrl("http://image.tmdb.org/t/p/w185/7y3eYvTsGjxPYDtSnumCLIMDkrV.jpg");
-            m.setReleaseDate("2004");
-            m.setVoteAverage("5/5");
-            m.setSynopsis("When their relationship turns sour, a couple undergoes a procedure to have each other erased from their memories. But it is only through the process of loss that they discover what they had to begin with.");
+    public static final int POPULAR = 0;
+    public static final int TOP_RATED = 1;
 
-            items.add(m);
-        }
+    public interface SuccessListener {
+        public void onSuccess();
+
     }
 
+    public MovieList(Context context) {
+        items = new ArrayList<>();
+        //initialize volley
+        VolleySingleton.getInstance(context);
+    }
+
+    //Request methods
+    public void getMovies(Context context, int type, final SuccessListener successListener) {
+
+        String url = Router.MOVIES_POPULAR;
+        switch (type) {
+            case POPULAR:
+                url = Router.MOVIES_POPULAR;
+                break;
+            case TOP_RATED:
+                url = Router.MOVIES_TOP_RATED;
+                break;
+        }
+
+        items.clear();
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+           new Response.Listener<JSONObject>() {
+               @Override
+               public void onResponse(JSONObject response) {
+                   try {
+                       loadMovies(response);
+                       successListener.onSuccess();
+                   } catch (JSONException e) {
+                       //TODO error
+                   }
+               }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        VolleySingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+    private void loadMovies(JSONObject response) throws JSONException {
+        JSONArray mi = response.getJSONArray("results");
+        for (int i = 0; i < mi.length() ; i++) {
+            JSONObject o = mi.getJSONObject(i);
+            Movie movie = new Movie();
+            movie.setTitle(o.getString("original_title"));
+            movie.setImageUrl(o.getString("poster_path"));
+            movie.setSynopsis(o.getString("overview"));
+            movie.setVoteAverage(o.getDouble("vote_average"));
+            movie.setReleaseDate(o.getString("release_date"));
+            items.add(movie);
+        }
+
+    }
+
+    //Other
     public int getCount() {
         return items.size();
     }

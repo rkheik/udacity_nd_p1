@@ -29,21 +29,26 @@ public class Movie implements Serializable {
     public String getImageUrl() {
         return imageUrl;
     }
-    public void setImageUrl(String mImageUrl) {
-        this.imageUrl = mImageUrl;
+    public void setImageUrl(String relativeImageUrl) {
+        this.imageUrl = Router.absoluteImageUrl(relativeImageUrl);
     }
 
     public String getReleaseDate() {
         return releaseDate;
     }
     public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+        String [] parts = releaseDate.split("-");
+        if(parts.length < 1) {
+            this.releaseDate = "";
+        } else {
+            this.releaseDate = parts[0];
+        }
     }
 
     public String getVoteAverage() {
         return voteAverage;
     }
-    public void setVoteAverage(String voteAverage) {
-        this.voteAverage = voteAverage;
+    public void setVoteAverage(Double voteAverage) {
+        this.voteAverage = Math.round(voteAverage) + "/10";
     }
 }

@@ -1,14 +1,14 @@
 package com.hk.popmovies;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MovieListActivity extends AppCompatActivity {
+
+    private OnOptionSelected menuListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,8 @@ public class MovieListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if(savedInstanceState == null) {
-            Fragment fragment = new MovieListFragment();
+            MovieListFragment fragment = new MovieListFragment();
+            menuListener = fragment;
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.movie_list_fragment_container, fragment)
@@ -33,15 +34,14 @@ public class MovieListActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_item_popular:
-                Log.d("something", "pop selected");
-                return true;
-            case R.id.menu_item_rating:
-                Log.d("something", "rating selected");
-                return true;
+        if( menuListener != null && menuListener.menuSelected(item.getItemId()) ) {
+            return true;
         }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    //Utils
+    public interface OnOptionSelected {
+        boolean menuSelected(int id);
     }
 }

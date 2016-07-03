@@ -8,4 +8,5 @@
 [Passing data serializing object](http://stackoverflow.com/questions/14333449)
 [Using newInstance() to Instantiate a Fragment](http://www.androiddesignpatterns.com/2012/05/using-newinstance-to-instantiate.html)
 [volley simple install](http://stackoverflow.com/questions/21065477)
+[volley singleton](https://developer.android.com/training/volley/requestqueue.html)
 [volley + json](https://developer.android.com/training/volley/request.html#request-json)
